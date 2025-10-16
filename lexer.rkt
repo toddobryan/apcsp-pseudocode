@@ -3,7 +3,7 @@
 
 (provide ps-lexer)
 
-(define-lex-abbrev digit (char-set "012345679"))
+(define-lex-abbrev digit (char-set "0123456789"))
 (define-lex-abbrev digits (:+ digit))
 (define-lex-abbrev lower-letter (char-set "abcdefghijklmnopqrstuvwxyz"))
 (define-lex-abbrev upper-letter (char-set "ABCDEFGHIJKLMNOPQRSTUVWXYZ"))

@@ -119,10 +119,14 @@
   (* x y))
 
 (define (ps-div num div)
-  (/ num div))
+  (if (or (not (number? num)) (not (number? div)))
+      (error (format "division requires two numbers, given ~a and ~a" num div))
+      (/ num div)))
 
 (define (ps-mod num div)
-  (modulo num div))
+  (if (or (not (integer? num)) (not (integer? div)))
+      (error (format "MOD requires two integer arguments, given ~a and ~a" num div))
+      (modulo num div)))
 
 (define (ps-not expr)
   (if (not (boolean? expr))
@@ -130,16 +134,22 @@
       (not expr)))
   
 (define (ps-neg expr)
-  (* -1 expr))
+  (if (not (number? expr))
+      (error ("negation requires a number, given ~a" expr))
+      (* -1 expr)))
 
 (define (ps-length expr)
-  (gvector-count expr))
+  (if (not (gvector? expr))
+      (error (format "LENGTH requires a list, given ~a" expr))
+      (gvector-count expr)))
 
 (define-macro (ps-list ELT ...)
   #'(gvector ELT ...))
 
 (define (ps-list-ref id num)
-  (gvector-ref id (sub1 num)))
+  (if (or (not (gvector? id)) (integer? num))
+      (error (format "expected list and integer index, given ~a and ~a" id num))
+      (gvector-ref id (sub1 num))))
 
 (define (ps-boolean b)
   (string=? "true" b))

@@ -20,11 +20,13 @@ ps-if-else : ps-if /ELSE /L-BRACE body /R-BRACE
 
 @ps-loop : ps-repeat | ps-repeat-until | ps-for-each
 
-ps-repeat : /REPEAT ps-expr /TIMES /L-BRACE body /R-BRACE
+ps-repeat : /REPEAT ps-expr /TIMES loop-body
 
-ps-repeat-until: /REPEAT /UNTIL ps-expr /L-BRACE body /R-BRACE
+ps-repeat-until: /REPEAT /UNTIL /L-PAREN ps-expr /R-PAREN loop-body
 
-ps-for-each : /FOR /EACH ID /IN ps-expr /L-BRACE body /R-BRACE
+ps-for-each : /FOR /EACH ID /IN ps-expr loop-body
+
+@loop-body: ps-line-end? /L-BRACE ps-line-end? body /R-BRACE
 
 ps-proc-def : /PROCEDURE ID /L-PAREN ([ID (/COMMA ID)*]) /R-PAREN /NEWLINE* L-BRACE body /R-BRACE
 

@@ -59,3 +59,51 @@
 (check-equal?
  (test-parse "num <- INPUT()")
  '(ps-program (ps-assignment num (ps-input))))
+
+(define repeat-n-loops
+  '(
+    "REPEAT 5 TIMES { i ← i + 1 }\nDISPLAY(i)"
+    #<<END
+REPEAT 5 TIMES {
+  i <- i + 1
+}
+DISPLAY(i)
+END
+    #<<END
+REPEAT 5 TIMES
+{
+  i <- i + 1
+}
+DISPLAY(i)
+END
+    ))
+
+(for ([l repeat-n-loops])
+  (check-equal?
+   (test-parse l)
+   '(ps-program
+     (ps-repeat 5 (ps-assignment i (ps-add i 1)))
+     (ps-display i))))
+
+(define for-each-loops
+  '(
+    "FOR EACH x IN [1, 2, 3] { DISPLAY(x) }"
+
+    #<<END
+FOR EACH x IN [1, 2, 3] {
+  DISPLAY(x)
+}
+END
+
+    #<<END
+FOR EACH x IN [1, 2, 3]
+{
+  DISPLAY(x)
+}
+END
+    ))
+  
+(for ([l for-each-loops])
+  (check-equal?
+   (test-parse l)
+   '(ps-program (ps-for-each x (ps-list 1 2 3) (ps-display x)))))
