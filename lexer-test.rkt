@@ -25,13 +25,13 @@
 
 (check-srcloc=? "\"abc\"" ('STRING "abc" 1 0 1 5))
 
-(check-srcloc=? "a" ('IDENTIFIER "a" 1 0 1 1))
+(check-srcloc=? "a" ('ID 'a 1 0 1 1))
 
 (check-srcloc=? "(a+b)"
                 ('L-PAREN "(" 1 0 1 1)
-                ('IDENTIFIER "a" 1 1 2 1)
-                ("+" "+" 1 2 3 1)
-                ('IDENTIFIER "b" 1 3 4 1)
+                ('ID 'a 1 1 2 1)
+                ('PLUS "+" 1 2 3 1)
+                ('ID 'b 1 3 4 1)
                 ('R-PAREN ")" 1 4 5 1)) 
                 
 
