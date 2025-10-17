@@ -23,6 +23,7 @@
          ['STRING '(string #f)]
          ['ID '(symbol #f)]
          ['COMMENT '(sexp-comment #f)]
+         ['ASSIGN '(no-color #f)]
          [(or 'TRUE 'FALSE) '(constant #f)]
          [(or 'PLUS 'MINUS 'TIMES 'DIV 'AND 'OR 'NOT) '(hash-colon-keyword #f)]
          [(or 'NE 'LE 'GE 'EQ 'GT 'LT) '(comment #f)]

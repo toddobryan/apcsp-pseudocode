@@ -14,19 +14,19 @@ ps-assignment : ps-id-like /ASSIGN ps-expr
 ps-display : /DISPLAY /L-PAREN ps-expr /R-PAREN
 ps-input : /INPUT /L-PAREN /R-PAREN
 
-ps-if : /IF /L-PAREN ps-expr /R-PAREN /L-BRACE body /R-BRACE
+ps-if : /IF /L-PAREN ps-expr /R-PAREN brace-body
 
-ps-if-else : ps-if /ELSE /L-BRACE body /R-BRACE
+ps-if-else : ps-if /ELSE brace-body
 
 @ps-loop : ps-repeat | ps-repeat-until | ps-for-each
 
-ps-repeat : /REPEAT ps-expr /TIMES loop-body
+ps-repeat : /REPEAT ps-expr /TIMES brace-body
 
-ps-repeat-until: /REPEAT /UNTIL /L-PAREN ps-expr /R-PAREN loop-body
+ps-repeat-until: /REPEAT /UNTIL /L-PAREN ps-expr /R-PAREN brace-body
 
-ps-for-each : /FOR /EACH ID /IN ps-expr loop-body
+ps-for-each : /FOR /EACH ID /IN ps-expr brace-body
 
-@loop-body: ps-line-end? /L-BRACE ps-line-end? body /R-BRACE
+@brace-body: ps-line-end? /L-BRACE ps-line-end? body /R-BRACE ps-line-end?
 
 ps-proc-def : /PROCEDURE ID /L-PAREN ([ID (/COMMA ID)*]) /R-PAREN /NEWLINE* L-BRACE body /R-BRACE
 
