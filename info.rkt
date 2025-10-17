@@ -1,6 +1,6 @@
 #lang info
 (define collection "apcsp-pseudocode")
-(define version "0.1")
+(define version "0.2")
 (define scribblings '(("scribblings/apcsp-pseudocode.scrbl")))
 (define deps '("base"
                "beautiful-racket-lib"
