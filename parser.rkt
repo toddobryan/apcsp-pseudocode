@@ -5,6 +5,7 @@
                 | ps-if | ps-if-else
                 | ps-loop | ps-list-op
                 | ps-proc-def | ps-return | ps-proc-call
+                | ps-dir
 
 @body : ps-line-end* ([ps-statement ps-line-end+]* ps-statement)? ps-line-end*
 
@@ -31,6 +32,8 @@ ps-for-each : /FOR /EACH ID /IN ps-expr brace-body
 ps-proc-def : /PROCEDURE ID /L-PAREN ([ID (/COMMA ID)*]) /R-PAREN /NEWLINE* L-BRACE body /R-BRACE
 
 ps-proc-call : ID /L-PAREN [ps-expr (/COMMA ps-expr)*] /R-PAREN
+
+ps-dir: /DIR
 
 ps-return : /RETURN /L-PAREN ps-expr /R-PAREN
 

@@ -147,9 +147,12 @@
   #'(gvector ELT ...))
 
 (define (ps-list-ref id num)
-  (if (or (not (gvector? id)) (integer? num))
+  (if (or (not (gvector? id)) (not (integer? num)))
       (error (format "expected list and integer index, given ~a and ~a" id num))
       (gvector-ref id (sub1 num))))
 
 (define (ps-boolean b)
   (string=? "true" b))
+
+(define (ps-dir)
+  (namespace-mapped-symbols))

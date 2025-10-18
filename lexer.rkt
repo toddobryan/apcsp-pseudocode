@@ -11,7 +11,7 @@
 (define ps-lexer
   (lexer-srcloc
    ["\n" (token 'NEWLINE lexeme)]
-   [whitespace (token lexeme #:skip? #t)]
+   [whitespace (token 'WS lexeme #:skip? #t)]
    [(from/to "//" "\n") (token 'COMMENT lexeme)] 
    [(from/to "\"" "\"")
     (token 'STRING (unescape-string lexeme))]
@@ -41,7 +41,8 @@
           "REPEAT" "TIMES" "UNTIL"
           "REMOVE" "FOR" "EACH" "IN"
           "LENGTH" "INSERT" "APPEND" "REMOVE"
-          "PROCEDURE" "RETURN")
+          "PROCEDURE" "RETURN"
+          "DIR")
     (token lexeme lexeme)]
    [(:seq (:? "-") digits) (token 'INTEGER (string->number lexeme))]
    [(:seq (:? "-")
